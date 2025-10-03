@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ediz Gündoğdu | Makine Mühendisi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <span class="site-title">Ediz Gündoğdu</span>
+      <ul class="navbar-menu">
+        <li><a href="#" onclick="showPage('home');return false;" id="nav-home">ANA SAYFA</a></li>
+        <li><a href="#" onclick="showPage('about');return false;" id="nav-about">HAKKIMDA</a></li>
+        <li><a href="#" onclick="showPage('projects');return false;" id="nav-projects">PORTFOLYO</a></li>
+        <li><a href="#" onclick="showPage('contact');return false;" id="nav-contact">İLETİŞİM</a></li>
+        <li><a href="#" onclick="showPage('cv');return false;" id="nav-cv">CV</a></li>
+      </ul>
+    </div>
+  </nav>
+  <main>
+    <section id="home" class="section active">
+      <div class="profile-main">
+        <img src="profile.jpg" class="profile-img" alt="Ediz Gündoğdu">
+        <div class="profile-info">
+          <h1>Ediz Gündoğdu</h1>
+          <h2>Makine Mühendisi & Endüstriyel Tasarımcı</h2>
+          <div class="profile-university">Bursa, Türkiye</div>
+        </div>
+      </div>
+      <div class="profile-bio">
+        <h3>Biyografi</h3>
+        <p>
+          Yaratıcı ve yenilikçi bir makine mühendisi olarak; endüstriyel tasarım, ürün geliştirme ve prototip imalatı konularında geniş bir tecrübeye sahibim. 3D modelleme, teknik resim ve üretime uygun tasarım revizyonları sunuyorum.<br>
+          Farklı sektörlerde; otomasyon, konveyör sistemleri, mekanik komponentler, fonksiyonel ürün ve ekipman tasarımı gibi birçok alanda projeler ürettim. Müşteriye özel, anahtar teslim çözümler geliştirmekteyim.<br>
+          <b>Uzmanlıklarım:</b> 3D CAD, teknik resim, prototip üretimi, ürün revizyonları, CNC işlenmiş parçalar, mekanik ve fonksiyonel aksesuarlar, endüstriyel ekipmanlar.<br>
+          <b>Vizyonum:</b> Sektörde özgün mühendislik yaklaşımıyla fark yaratmak ve yenilikçi çözümler sunmak.
+        </p>
+      </div>
+    </section>
+    <section id="about" class="section">
+      <h3>Hakkımda</h3>
+      <ul>
+        <li>Makine mühendisliği ve endüstriyel tasarım alanında 10+ yıl deneyim</li>
+        <li>3D modelleme, CAD/CAM/FEM/FEA analizleri ve teknik resim</li>
+        <li>Otomasyon ve üretim hatları, konveyör ve mekanik sistemler</li>
+        <li>Prototip ve seri üretime uygun fonksiyonel ürün tasarımları</li>
+        <li>Müşteri ihtiyacına özel anahtar teslim çözümler</li>
+        <li>Yurtiçi ve yurtdışı projelerde işbirliği ve teknik danışmanlık</li>
+      </ul>
+      <p><b>Başarılar:</b> Birçok endüstriyel projede liderlik, ürün geliştirme ve prototip imalatı.</p>
+    </section>
+    <section id="projects" class="section">
+      <h3>Portfolyo</h3>
+      <div class="portfolio-list" id="portfolio-list"></div>
+    </section>
+    <section id="contact" class="section">
+      <h3>İletişim</h3>
+      <ul>
+        <li>E-posta: <a href="mailto:ediz@example.com">ediz@example.com</a></li>
+        <li>Telefon: +90 536 391 28 06</li>
+        <li>Lokasyon: Bursa, Türkiye</li>
+        <li>CadCrowd: <a href="https://www.cadcrowd.com/profile/166426-edi-zgndd" target="_blank">CadCrowd Profilim</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/edizgnd/" target="_blank">LinkedIn Profilim</a></li>
+      </ul>
+    </section>
+    <section id="cv" class="section">
+      <h3>CV / Özgeçmiş</h3>
+      <p>CV’mi aşağıdan inceleyebilir veya indirebilirsiniz:</p>
+      <a href="Ediz Gündoğdu_CV.pdf" target="_blank" class="btn-main">PDF Olarak Görüntüle / İndir</a>
+      <embed src="Ediz Gündoğdu_CV.pdf" type="application/pdf" width="100%" height="600px" style="margin-top:24px;border-radius:12px;">
+    </section>
+    <!-- Modal -->
+    <div class="modal-bg" id="modal-bg" style="display:none;" onclick="closeModal(event)">
+      <div class="modal-content" onclick="event.stopPropagation();">
+        <button class="modal-close" onclick="closeModal(event)">
+          <svg width="28" height="28" viewBox="0 0 28 28">
+            <rect width="28" height="28" rx="7" fill="#fff"/>
+            <path d="M9 9L19 19M19 9L9 19" stroke="#c49d36" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div id="modal-detail"></div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <span>&copy; 2025 Ediz Gündoğdu</span>
+  </footer>
+  <script>
+    function showPage(page) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(page).classList.add('active');
+      document.querySelectorAll('.navbar-menu a').forEach(a => a.classList.remove('active'));
+      if(page === "home") document.getElementById("nav-home").classList.add('active');
+      if(page === "about") document.getElementById("nav-about").classList.add('active');
+      if(page === "projects") document.getElementById("nav-projects").classList.add('active');
+      if(page === "contact") document.getElementById("nav-contact").classList.add('active');
+      if(page === "cv") document.getElementById("nav-cv").classList.add('active');
+    }
+    showPage("home");
+
+    // Tüm CadCrowd portfolyo ürünlerini ekle (örnek görsel linklerini kendi ürünlerinin görselleriyle değiştirebilirsin)
+    const portfolioProjects = [
+      {
+        title: "Zincir Tahrikli Lineer Hareket Sistemi",
+        image: "https://placehold.co/320x180/fff/222?text=Lineer+Sistem",
+        detail: "Zincir mekanizmasıyla çalışan, yüksek hassasiyetli endüstriyel lineer pozisyonlama sistemi. Otomasyon hatlarında verimlilik ve hassasiyet için optimize edilmiştir."
+      },
+      {
+        title: "Dikey Helezon Konveyör Sistemi",
+        image: "https://placehold.co/320x180/fff/222?text=Helezon+Konveyör",
+        detail: "Enerji verimliliği yüksek, modüler ve bakımı kolay dikey malzeme taşıma sistemi. Fabrika içi ürün transferlerinde uzun ömürlü çözüm."
+      },
+      {
+        title: "Ultra Hafif Metal Valiz Tekerleği",
+        image: "https://placehold.co/320x180/fff/222?text=Valiz+Tekerleği",
+        detail: "Uzun ömürlü, sessiz ve dayanıklı, tamamen metalden üretilmiş hafif valiz tekeri tasarımı. Son teknoloji üretim teknikleriyle geliştirilmiştir."
+      },
+      {
+        title: "Otomatik Tartım Konveyör Sistemleri",
+        image: "https://placehold.co/320x180/fff/222?text=Tartım+Konveyör",
+        detail: "Üretim hatlarında otomatik ürün tartımı ve transferi sağlayan, entegre konveyör sistemlerinin tasarımı ve devreye alınması."
+      },
+      {
+        title: "Katodik Kaplama Besleme Hatları",
+        image: "https://placehold.co/320x180/fff/222?text=Kaplama+Hatları",
+        detail: "Endüstriyel yüzey kaplama proseslerinde kullanılan, üretime uygun şekilde tasarlanmış katodik kaplama besleme hatlarının 3D modellemesi ve teknik resimleri."
+      },
+      {
+        title: "Lüks Kişisel Savunma Aksesuarları",
+        image: "https://placehold.co/320x180/fff/222?text=Savunma+Aksesuarı",
+        detail: "CNC işlenmiş, ergonomik ve şık kişisel koruma aksesuarları. Yüksek kalite standartlarına uygun, fonksiyonel ve estetik çözümler."
+      },
+      {
+        title: "Lüks Ev Spor Seti – Fitness Bench ve Ayarlanabilir Dambıl",
+        image: "https://placehold.co/320x180/fff/222?text=Ev+Spor+Seti",
+        detail: "Ev spor alanları için çok fonksiyonlu fitness bench ve entegre ayarlanabilir dambıl seti. Premium malzeme ve mühendislik ile tasarlandı."
+      },
+      {
+        title: "Troleyli Konveyör Ünitesi",
+        image: "https://placehold.co/320x180/fff/222?text=Troleyli+Konveyör",
+        detail: "Montaj ve taşıma hatları için geliştirilmiş, ergonomik ve ayarlanabilir troleyli konveyör ünitesi. Operasyonel verimlilik ve esneklik sağlar."
+      },
+      {
+        title: "Özel Platformlar ve İmalata Uygun Revizyonlar",
+        image: "https://placehold.co/320x180/fff/222?text=Platform+Revizyon",
+        detail: "Müşteri ihtiyacına özel geliştirilen platform sistemleri ve imalat kolaylığı sağlayan tasarım revizyonları. Prototipten üretime anahtar teslim çözümler."
+      },
+      {
+        title: "Asansör Mekanizmaları",
+        image: "https://placehold.co/320x180/fff/222?text=Asansör+Mekanizması",
+        detail: "Endüstriyel taşıma ve kaldırma çözümlerinde kullanılan, yüksek güvenlikli ve verimli asansör mekanizmalarının mühendislik ve tasarım süreçleri."
+      },
+      {
+        title: "Kişisel Koruma Ekipmanı Tasarımı",
+        image: "https://placehold.co/320x180/fff/222?text=Koruma+Ekipmanı",
+        detail: "Ergonomik ve dayanıklı kişisel koruma ekipmanları, CNC işleme ve endüstriyel tasarım ile geliştirilmiştir."
+      },
+      {
+        title: "Endüstriyel Makine Parçaları",
+        image: "https://placehold.co/320x180/fff/222?text=Makine+Parçası",
+        detail: "Endüstriyel makineler için teknik resim ve üretime uygun fonksiyonel parça tasarımları."
+      }
+    ];
+
+    function renderPortfolio() {
+      const list = document.getElementById('portfolio-list');
+      list.innerHTML = portfolioProjects.map((p, idx) => `
+        <div class="portfolio-item" onclick="showModal(${idx})">
+          <img src="${p.image}" alt="${p.title}">
+          <h4>${p.title}</h4>
+        </div>
+      `).join('');
+    }
+    renderPortfolio();
+
+    function showModal(idx) {
+      const p = portfolioProjects[idx];
+      document.getElementById('modal-detail').innerHTML = `
+        <img src="${p.image}" alt="${p.title}" style="width:100%;max-width:340px;border-radius:14px;margin-bottom:14px;">
+        <h3>${p.title}</h3>
+        <p>${p.detail}</p>
+      `;
+      document.getElementById('modal-bg').style.display = 'flex';
+    }
+    function closeModal(e) {
+      if (e && e.stopPropagation) e.stopPropagation();
+      document.getElementById('modal-bg').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
