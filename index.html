@@ -15,8 +15,8 @@
         <li><a href="#home" id="nav-home">ANA SAYFA</a></li>
         <li><a href="#about" id="nav-about">HAKKIMDA</a></li>
         <li><a href="#projects" id="nav-projects">PORTFOLYO</a></li>
-        <li><a href="#contact" id="nav-contact">İLETİŞİM</a></li>
         <li><a href="#cv" id="nav-cv">CV</a></li>
+        <li><a href="#contact" id="nav-contact">İLETİŞİM</a></li>
       </ul>
     </div>
   </nav>
@@ -85,23 +85,36 @@
       <h3>Portfolyo</h3>
       <div class="portfolio-list" id="portfolio-list"></div>
     </section>
-    <section id="contact" class="section">
-      <h3>İletişim</h3>
-      <ul>
-        <li>E-posta: <a href="mailto:ediz@example.com">ediz@example.com</a></li>
-        <li>Telefon: +90 536 391 28 06</li>
-        <li>Lokasyon: Bursa, Türkiye</li>
-        <li>CadCrowd: <a href="https://www.cadcrowd.com/profile/166426-edi-zgndd" target="_blank">CadCrowd Profilim</a></li>
-        <li>LinkedIn: <a href="https://www.linkedin.com/in/edizgnd/" target="_blank">LinkedIn Profilim</a></li>
-      </ul>
-    </section>
     <section id="cv" class="section">
       <h3>CV / Özgeçmiş</h3>
       <p>CV’mi aşağıdan inceleyebilir veya indirebilirsiniz:</p>
       <a href="Ediz Gündoğdu_CV.pdf" target="_blank" class="btn-main">PDF Olarak Görüntüle / İndir</a>
       <embed src="Ediz Gündoğdu_CV.pdf" type="application/pdf" width="100%" height="600px" style="margin-top:24px;border-radius:12px;">
     </section>
-    <!-- Modal -->
+    <section id="contact" class="section">
+      <div class="contact-flex">
+        <div class="contact-info">
+          <h3>İletişim</h3>
+          <ul>
+            <li>E-posta: <a href="mailto:ediz@example.com">ediz@example.com</a></li>
+            <li>Telefon: +90 536 391 28 06</li>
+            <li>Lokasyon: Bursa, Türkiye</li>
+            <li>CadCrowd: <a href="https://www.cadcrowd.com/profile/166426-edi-zgndd" target="_blank">CadCrowd Profilim</a></li>
+            <li>LinkedIn: <a href="https://www.linkedin.com/in/edizgnd/" target="_blank">LinkedIn Profilim</a></li>
+          </ul>
+        </div>
+        <div class="contact-form">
+          <h4>Mesaj Gönder</h4>
+          <form id="mailForm" autocomplete="off">
+            <input type="text" name="name" placeholder="Adınız" required>
+            <input type="email" name="email" placeholder="E-posta Adresiniz" required>
+            <textarea name="message" placeholder="Mesajınız" rows="5" required></textarea>
+            <button type="submit">Gönder</button>
+            <div id="formResult"></div>
+          </form>
+        </div>
+      </div>
+    </section>
     <div class="modal-bg" id="modal-bg" style="display:none;" onclick="closeModal(event)">
       <div class="modal-content" onclick="event.stopPropagation();">
         <button class="modal-close" onclick="closeModal(event)">
@@ -254,6 +267,18 @@
       if (e && e.stopPropagation) e.stopPropagation();
       document.getElementById('modal-bg').style.display = 'none';
     }
+
+    // İletişim formu JS (mailto ile otomatik mail açar)
+    document.getElementById("mailForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      const name = this.name.value;
+      const email = this.email.value;
+      const message = this.message.value;
+      const mailtoLink = `mailto:ediz@example.com?subject=İletişim Formu Mesajı - ${encodeURIComponent(name)}&body=Gönderen: ${encodeURIComponent(name)} (${encodeURIComponent(email)})%0A%0AMesaj:%0A${encodeURIComponent(message)}`;
+      window.location.href = mailtoLink;
+      document.getElementById("formResult").innerHTML = "Mail göndermek için e-posta uygulamanız açıldı.";
+      this.reset();
+    });
   </script>
 </body>
 </html>
