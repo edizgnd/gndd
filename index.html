@@ -12,11 +12,11 @@
     <div class="navbar-container">
       <span class="site-title">Ediz Gündoğdu</span>
       <ul class="navbar-menu">
-        <li><a href="#" onclick="showPage('home');return false;" id="nav-home">ANA SAYFA</a></li>
-        <li><a href="#" onclick="showPage('about');return false;" id="nav-about">HAKKIMDA</a></li>
-        <li><a href="#" onclick="showPage('projects');return false;" id="nav-projects">PORTFOLYO</a></li>
-        <li><a href="#" onclick="showPage('contact');return false;" id="nav-contact">İLETİŞİM</a></li>
-        <li><a href="#" onclick="showPage('cv');return false;" id="nav-cv">CV</a></li>
+        <li><a href="#home" id="nav-home">ANA SAYFA</a></li>
+        <li><a href="#about" id="nav-about">HAKKIMDA</a></li>
+        <li><a href="#projects" id="nav-projects">PORTFOLYO</a></li>
+        <li><a href="#contact" id="nav-contact">İLETİŞİM</a></li>
+        <li><a href="#cv" id="nav-cv">CV</a></li>
       </ul>
     </div>
   </nav>
@@ -118,18 +118,55 @@
     <span>&copy; 2025 Ediz Gündoğdu</span>
   </footer>
   <script>
-    function showPage(page) {
-      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-      document.getElementById(page).classList.add('active');
-      document.querySelectorAll('.navbar-menu a').forEach(a => a.classList.remove('active'));
-      if(page === "home") document.getElementById("nav-home").classList.add('active');
-      if(page === "about") document.getElementById("nav-about").classList.add('active');
-      if(page === "projects") document.getElementById("nav-projects").classList.add('active');
-      if(page === "contact") document.getElementById("nav-contact").classList.add('active');
-      if(page === "cv") document.getElementById("nav-cv").classList.add('active');
-    }
-    showPage("home");
+    // Smooth scroll for navbar links
+    document.querySelectorAll('.navbar-menu a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').replace('#', '');
+        const section = document.getElementById(targetId);
+        if (section) {
+          window.scrollTo({
+            top: section.offsetTop - document.querySelector('.navbar').offsetHeight,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
 
+    // Fade effect for sections on scroll
+    function handleSectionFade() {
+      document.querySelectorAll('.section').forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80 && rect.bottom > 80) {
+          sec.classList.add('visible');
+        } else {
+          sec.classList.remove('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', handleSectionFade);
+    window.addEventListener('resize', handleSectionFade);
+    document.addEventListener('DOMContentLoaded', handleSectionFade);
+
+    // Scrollspy: aktif sekme otomatik değişsin
+    window.addEventListener('scroll', function() {
+      const sections = document.querySelectorAll('.section');
+      let found = false;
+      sections.forEach((section, i) => {
+        const rect = section.getBoundingClientRect();
+        const navId = 'nav-' + section.id;
+        const navLink = document.getElementById(navId);
+        if (rect.top <= document.querySelector('.navbar').offsetHeight+12 &&
+            rect.bottom > document.querySelector('.navbar').offsetHeight+12 && !found) {
+          navLink.classList.add('active');
+          found = true;
+        } else {
+          navLink.classList.remove('active');
+        }
+      });
+    });
+
+    // Portfolyo render
     const portfolioProjects = [
       {
         title: "Zincir Tahrikli Lineer Hareket Sistemi",
